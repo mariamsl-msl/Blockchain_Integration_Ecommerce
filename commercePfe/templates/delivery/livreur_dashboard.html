@@ -1,0 +1,25 @@
+{% extends 'parts/base_delivery.html' %}
+
+{% block content %}
+<h1>📦 Commandes à Livrer</h1>
+<table>
+    <tr><th>Client</th><th>Produit</th><th>Action</th></tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.full_name }}</td>
+        <td>{{ order.product.name }}</td>
+        <td>
+            {% if order.status_delivered != "livré" %}
+            <form method="post" action="{% url 'mark_as_delivered' order.id %}">
+                {% csrf_token %}
+                <button type="submit">✅ Marquer comme livré</button>
+            </form>
+            {% else %}
+            ✅ Déjà livré
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

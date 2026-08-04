@@ -1,0 +1,249 @@
+{% extends 'parts/base.html' %}
+{% block title %}Order Confirmation - DecentraShop{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Confirmation - DecentraShop</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/product/confirm_delivery.css' %}" />
+
+<body>
+
+<div class="confirmation-container">
+  <div class="page-header">
+    <h1>Your Order Summary</h1>
+    <p>Review and confirm your deliveries below. Please verify all details before proceeding with payment.</p>
+  </div>
+
+  {% if orders %}
+    {% for order in orders %}
+      <div class="order-card">
+        <div class="order-header">
+          <h3>{{ order.product.name }}</h3>
+          <span class="order-id">Order #{{ order.id }}</span>
+        </div>
+
+        <div class="order-details">
+          <div class="detail-group">
+          <span class="detail-label">Products</span>
+          <span class="detail-value">
+            <ul style="padding-left: 20px;">
+              {% for item in order.items.all %}
+                <li>{{ item.product.name }} × {{ item.quantity }}</li>
+              {% endfor %}
+            </ul>
+          </span>
+
+          </div>
+          
+          <div class="detail-group">
+            <span class="detail-label">Price</span>
+            <span class="detail-value">${{ order.total_price }}</span>
+          </div>
+          
+          <div class="detail-group">
+            <span class="detail-label">Order Date</span>
+            <span class="detail-value">{{ order.timestamp|date:"M d, Y" }}</span>
+          </div>
+          
+          <div class="detail-group">
+            <span class="detail-label">Customer</span>
+            <span class="detail-value">{{ order.full_name }}</span>
+          </div>
+          
+          <div class="detail-group">
+            <span class="detail-label">Delivery Address</span>
+            <span class="detail-value">{{ order.address }}, {{ order.city }}</span>
+          </div>
+          
+          <div class="detail-group">
+            <span class="detail-label">Contact</span>
+            <span class="detail-value">{{ order.email }} · {{ order.phone_number }}</span>
+          </div>
+        </div>
+
+        {% if order.delivery_status == "delivered_not_confirm" %}
+          <div>
+                      <button class="btn-return" type="button">
+            <i class="fas fa-undo-alt"></i> Request Return
+          </button>
+          </div>
+
+          <div class="status-badge status-delivered">
+            <i class="fas fa-truck"></i> Delivered - Awaiting Confirmation
+          </div>
+        {% elif order.delivery_status == "in_progress" %}
+          <div class="status-badge status-pending">
+            <i class="fas fa-clock"></i> Processing Your Order
+          </div>
+        {% elif order.delivery_status == "delivered_confirm" %}
+
+          <div class="status-badge status-confirmed">
+            <i class="fas fa-check-circle"></i> Payment & Delivery Confirmed
+          </div>
+        {% endif %}
+
+        <div class="action-buttons">
+          {% if order.delivery_status == "delivered_not_confirm" %}
+            <button class="btn-confirm pulse" data-order-id="{{ order.id }}">
+              <i class="fas fa-check"></i> Confirm Delivery & Pay
+            </button>
+          {% endif %}
+
+          {% if order.delivery_status == "not_delivered" %}
+            <form action="{% url 'cancel_order' order.id %}" method="post" style="width: 100%;">
+                 <div class="status-badge status-waiting">
+                  <i class="fas fa-hourglass-start"></i> Not Yet Processed
+                </div>
+                <br><br><br>
+              {% csrf_token %}
+              <button type="submit" class="btn-cancel">
+                <i class="fas fa-times"></i> Cancel Order
+              </button>
+            </form>
+          {% endif %}
+        </div>
+
+        <div id="payment-result-{{ order.id }}" class="payment-result"></div>
+
+        {% if not forloop.last %}
+          <div class="divider"></div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty-state">
+      <i class="fas fa-box-open"></i>
+      <h3>No Orders Awaiting Confirmation</h3>
+      <p>You currently have no orders that require confirmation. Check back later or view your order history.</p>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.querySelectorAll('.btn-confirm').forEach(button => {
+    button.addEventListener('click', async function() {
+      const orderId = this.getAttribute('data-order-id');
+      const paymentResult = document.getElementById(`payment-result-${orderId}`);
+      const button = this;
+
+      // Show loading state
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      button.classList.remove('pulse');
+
+      try {
+        const response = await fetch("/product/update_order_status/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
+          body: JSON.stringify({ order_id: orderId }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.status === 'success') {
+            paymentResult.innerHTML = `<span style="color: green;">✔ ${data.message}</span>`;
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+          } else {
+            paymentResult.innerHTML = `<span style="color: red;">❌ ${data.message}</span>`;
+          }
+
+          paymentResult.className = "payment-result payment-success";
+
+          // Update button to show success
+          button.innerHTML = '<i class="fas fa-check-circle"></i> Confirmed';
+          button.style.background = "linear-gradient(135deg, #28a745, #20c997)";
+          button.disabled = true;
+
+          // Update status badge
+          const statusBadge = button.closest('.order-card').querySelector('.status-badge');
+          if (statusBadge) {
+            statusBadge.className = "status-badge status-confirmed";
+            statusBadge.innerHTML = '<i class="fas fa-check-circle"></i> Payment & Delivery Confirmed';
+          }
+        } else {
+          const errorData = await response.json();
+          paymentResult.textContent = errorData.error || "Error processing your payment. Please try again.";
+          paymentResult.className = "payment-result payment-error";
+
+          // Reset button
+          button.innerHTML = '<i class="fas fa-check"></i> Confirm Delivery & Pay';
+          button.classList.add('pulse');
+        }
+      } catch (err) {
+        paymentResult.textContent = "Network error occurred. Please check your connection and try again.";
+        paymentResult.className = "payment-result payment-error";
+
+        // Reset button
+        button.innerHTML = '<i class="fas fa-check"></i> Confirm Delivery & Pay';
+        button.classList.add('pulse');
+      }
+    });
+  });
+
+document.querySelectorAll('.btn-return').forEach(button => {
+  button.addEventListener('click', function() {
+    const orderId = this.closest('.order-card').querySelector('.order-id').textContent.replace('Order #', '');
+    requestReturn(orderId);
+  });
+});
+
+// Update your existing requestReturn function
+function requestReturn(orderId) {
+  if (confirm("Are you sure you want to request a return for this order?")) {
+    // Show loading state
+    const button = document.querySelector(`.btn-return[data-order-id="${orderId}"]`);
+    if (button) {
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      button.disabled = true;
+    }
+
+    fetch("/product/return_requested/", {  // Updated endpoint to match your view
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      body: JSON.stringify({ order_id: orderId }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "success") {
+        alert("Return request submitted successfully!");
+        window.location.reload();
+      } else {
+        alert("Error: " + (data.message || "Request failed"));
+        if (button) {
+          button.innerHTML = '<i class="fas fa-undo-alt"></i> Request Return';
+          button.disabled = false;
+        }
+      }
+    })
+    .catch(err => {
+      alert("Network error. Please try again later.");
+      if (button) {
+        button.innerHTML = '<i class="fas fa-undo-alt"></i> Request Return';
+        button.disabled = false;
+      }
+    });
+  }
+}
+</script>
+
+
+</body>
+{% endblock %}
+</html>

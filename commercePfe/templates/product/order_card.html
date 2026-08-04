@@ -1,0 +1,36 @@
+<div class="card">
+  <h4>Order #{{ order.id }}</h4>
+  <p><strong>Product:</strong> {{ order.product.name }}</p>
+  <p><strong>Price:</strong> {{ order.product.price }}$</p>
+  <p><strong>Full Name:</strong> {{ order.full_name }}</p>
+  <p><strong>Address:</strong> {{ order.address }}, {{ order.city }}</p>
+  <p><strong>Email:</strong> {{ order.email }}</p>
+  <p><strong>Phone:</strong> {{ order.phone_number }}</p>
+
+  {% if order.delivery_status == "delivered_not_confirm" %}
+    <button class="confirm-button" data-order-id="{{ order.id }}">
+      ✅ Confirm Delivery & Pay
+    </button>
+    <div class="payment-result" id="payment-result-{{ order.id }}"></div>
+
+  {% elif order.delivery_status == "not_delivered" %}
+    <p class="text-info"><strong>Status:</strong> Awaiting review</p>
+
+  {% elif order.delivery_status == "delivered_confirm" %}
+    <p class="text-info">Payment and delivery confirmed!</p>
+
+  {% else %}
+    <p class="text-muted">Order is in progress or not cancelable</p>
+  {% endif %}
+
+  <form action="{% url 'cancel_order' order.id %}" method="post" style="margin-top: 1.5rem;">
+    {% csrf_token %}
+    {% if order.delivery_status == "not_delivered" %}
+      <button type="submit" class="btn-danger">Cancel Order</button>
+    {% else %}
+      <p class="text-muted">Order cannot be canceled</p>
+    {% endif %}
+  </form>
+
+  <hr />
+</div>

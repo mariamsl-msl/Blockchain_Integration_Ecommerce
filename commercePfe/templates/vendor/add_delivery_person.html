@@ -1,0 +1,120 @@
+{% extends 'parts/base_admin.html' %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f5f3fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .form-wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(126, 107, 174, 0.1), 0 8px 32px rgba(126, 107, 174, 0.08);
+    border-left: 6px solid #7e6bae;
+  }
+
+  h2 {
+    text-align: center;
+    color: #6b5b95;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  h2::before {
+    content: "🚚";
+    font-size: 1.6rem;
+  }
+
+  form p {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #5e4d8a;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background-color: #f8f6ff;
+    transition: border-color 0.3s, box-shadow 0.3s ease;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #7e6bae;
+    box-shadow: 0 0 10px rgba(126, 107, 174, 0.15);
+    outline: none;
+  }
+
+  .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #a499d6, #7e6bae);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(126, 107, 174, 0.2);
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .btn-submit:hover {
+    background: linear-gradient(135deg, #7e6bae, #5e4d8a);
+    box-shadow: 0 6px 20px rgba(94, 77, 138, 0.3);
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #7e6bae;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: #5e4d8a;
+    text-decoration: underline;
+  }
+</style>
+
+<div class="form-wrapper">
+  <h2>Add a New Deliverer</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn-submit"> Create Account</button>
+  </form>
+
+  <a href="{% url 'delivery_persons' %}" class="back-link">← Back to Deliverers List</a>
+</div>
+{% endblock %}

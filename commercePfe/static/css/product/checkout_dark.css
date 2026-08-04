@@ -1,0 +1,224 @@
+
+body.dark-mode .estimated-total {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e1e2f;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-top: 1px solid #6c6a6a;
+  border-bottom: 1px solid #6c6a6a;
+  margin-bottom: 20px;
+}
+
+
+
+body.dark-mode .btn-buy {
+  background-color: #793fed;
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 10px 150px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+body.dark-mode .btn-buy:hover {
+  background-color: #662d9c;
+}
+    
+
+
+    body.dark-mode .form-group {
+    margin-bottom: 20px;
+    }
+
+    body.dark-mode label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    color: #cccccc;
+    }
+
+    body.dark-mode input, body.dark-mode #card-element {
+    width: 100%;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #2a2a3b;
+    color: #f0f0f0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    body.dark-mode input::placeholder {
+    color: #999;
+    }
+    
+    body.dark-mode input:focus, #card-element:focus {
+    border-color: #8899ff;
+    outline: none;
+    }
+
+    body.dark-mode #submit {
+    margin-top: 20px;
+    padding: 12px;
+    background: #4c5fd5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    }
+
+
+    #payment-result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #a0a0a0;
+    text-align: center;
+    }
+
+body.dark-mode .cart-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1px solid #585454;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .cart-right {
+  flex: 1;
+  min-width: 280px;
+  padding: 20px;
+  border-left: 2px solid #585454;
+  background-color: #2a2929;
+  border-radius: 8px;
+}
+
+    /* Night mode styles */
+body.dark-mode .empty-cart {
+  background: #2a2a3b;
+  color: #ccc;
+  border: 2px dashed #555;
+  box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .empty-cart i {
+  color: #4d56bd; /* lighter blue for night */
+  animation: bounce 1.5s infinite;
+}
+
+body.dark-mode .empty-cart h2 {
+  color: #eee;
+}
+
+body.dark-mode .empty-cart p {
+  color: #aaa;
+}
+
+body.dark-mode #back-home-btn {
+  background-color: #444ebb;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(77, 171, 247, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode #back-home-btn:hover {
+  background-color: #202dba;
+  transform: scale(1.05);
+}
+
+.spacer-lg {
+  margin-top: 600px; /* adjust as needed */
+}
+
+body.dark-mode .quantity-input {
+  background-color: #1b1b1b;
+  color: #eee;
+  border-color: #444;
+  /* no width/padding/font-size overrides here */
+}
+
+body.dark-mode .btn-outline-secondary {
+  background-color: #0f1011;
+  color: #ddd;
+  border-color: #555;
+}
+
+
+
+
+/* Cart Header - Dark Mode */
+.dark-mode .cart-header {
+    background-color: #1c1c28 !important;
+    color: #ccc;
+}
+
+.dark-mode .cart-header > div {
+    color: #ccc;
+}
+
+
+
+body.dark-mode #checkoutOverlay {
+    background-color: rgba(0, 0, 0, 0.7); /* slightly darker overlay */
+}
+
+body.dark-mode #checkoutForm {
+    background-color: #1f1f1f !important;  /* dark background */
+    color: #f1f1f1; /* light text */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode #checkoutForm h2 {
+    color: #f8f9fa;
+}
+
+body.dark-mode #checkoutForm label {
+    color: #ccc;
+}
+
+body.dark-mode #checkoutForm input {
+    background-color: #2a2a2a;
+    border: 2px solid #444;
+    color: #f1f1f1;
+    box-shadow: none;
+}
+
+body.dark-mode #checkoutForm input:focus {
+    background-color: #1f1f1f;
+    border-color: #0d6efd;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+    color: #fff;
+}
+
+body.dark-mode #checkoutForm input::placeholder {
+    color: #888;
+}
+
+/* Submit button: no change needed unless you want a darker style */
+body.dark-mode #submit-order {
+    /* Optional: keep it the same or adjust colors */
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: #fff;
+}
+
+/* Cancel button */
+body.dark-mode #cancelCheckout {
+    background-color: transparent;
+    border-color: #bbb;
+    color: #bbb;
+}
+
+body.dark-mode #cancelCheckout:hover {
+    background-color: #bbb;
+    color: #1a1a1a;
+}

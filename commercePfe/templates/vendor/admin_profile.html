@@ -1,0 +1,39 @@
+{% extends 'vendor/base_admin.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">🧑‍💼 Admin Profile</h2>
+
+    <div class="card p-4" style="max-width: 500px;">
+
+        <div class="text-center mb-3">
+            <!-- Icône profil Bootstrap circulaire -->
+            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                 style="width: 100px; height: 100px; font-size: 3rem;">
+                <i class="bi bi-person-fill"></i>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Username</label>
+                <input type="text" class="form-control" value="{{ user.username }}" disabled />
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control" value="{{ user.email }}" disabled />
+            </div>
+            <div class="mb-3">
+                <label>First Name</label>
+                <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}" />
+            </div>
+            <div class="mb-3">
+                <label>Last Name</label>
+                <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

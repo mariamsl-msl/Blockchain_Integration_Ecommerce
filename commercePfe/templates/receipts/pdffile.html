@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Helvetica, sans-serif; }
+        h1 { text-align: center; }
+        .section { margin-bottom: 20px; }
+        .items th, .items td { padding: 5px; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Receipt Confirmation</h1>
+
+    <div class="section">
+        <strong>Order ID:</strong> {{ order.id }}<br>
+        <strong>Client:</strong> {{ order.full_name }}<br>
+        <strong>Email:</strong> {{ order.email }}<br>
+        <strong>Address:</strong> {{ order.address }}, {{ order.city }}
+    </div>
+
+    <div class="section">
+        <strong>Items:</strong>
+        <table class="items">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price (€)</th>
+                    <th>Total (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in order.items.all %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.quantity|floatformat:2|add:item.price|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <strong>Total Paid:</strong> {{ total }} €<br>
+        <strong>Payment Status:</strong> Paid<br>
+        <strong>Delivery Status:</strong> Delivered & Confirmed
+    </div>
+</body>
+</html>

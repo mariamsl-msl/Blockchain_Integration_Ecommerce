@@ -1,0 +1,406 @@
+
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>M&C - Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/product/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product/checkout_dark.css' %}">
+
+</head>
+
+<body class="light-mode" data-aos="fade-up">
+{% include 'parts/navbar.html' %}
+{% block content %}
+
+<div class="main-content-wrapper">
+    <div class="cart-container">
+      <!-- Left: Products -->
+      <div class="cart-left">
+        <h1>{% trans "Cart" %}</h1>
+        <br> <hr>
+        <div id="cart-header-container"></div>
+        <div class="cart-items" id="cart-items-container">
+          <!-- Items will be dynamically inserted here -->
+        </div>
+<script>
+    const translations = {
+        emptyCartTitle: "{% blocktrans %}Your cart is empty{% endblocktrans %}",
+        emptyCartText: "{% blocktrans %}Start shopping to fill your cart{% endblocktrans %}",
+        emptyCartButton: "{% blocktrans %}Go to Shop{% endblocktrans %}"
+    };
+</script>
+
+      </div>
+
+      <!-- Right: Checkout -->
+      <div class="cart-right">
+        <div class="estimated-total">
+            <span>{% trans "Estimated Total" %}</span>
+            <span id="cart-total">0.00 €</span>
+        </div>
+        <div class="checkout-button-wrapper">
+            <button class="btn-buy" type="button" id="checkout-button">{% trans "Checkout" %}</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+ 
+<!-- Checkout Form -->
+ <div id="checkoutOverlay"></div>
+
+<div id="checkoutForm" class="checkout-bar bg-white shadow-lg rounded">
+
+  <div class="form-group mb-3">
+    <h4><b>{% trans "Contact" %}</b></h4>
+    <label for="customer-email" class="form-label">Email</label>
+    <input type="email" id="customer-email" class="form-control" required placeholder="exemple@domaine.com">
+  </div>
+
+    <div class="form-group mb-3">
+    <label for="customer-phone" class="form-label">{% trans "Phone" %}</label>
+    <input type="tel" id="customer-phone" class="form-control" required placeholder="+213 6 12 34 56 78">
+  </div>
+
+    <h4><b>{% trans "Shipping" %}</b></h4>
+  <div class="form-group mb-3">
+    <label for="customer-name" class="form-label">{% trans "Full Name" %}</label>
+    <input type="text" id="customer-name" class="form-control" required placeholder="{% trans 'Your full name' %}">
+  </div>
+
+
+
+  <div class="form-group mb-3">
+    <label for="customer-address" class="form-label">{% trans "Address" %}</label>
+    <input type="text" id="customer-address" class="form-control" placeholder="{% trans 'Shipping address' %}">
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="customer-city" class="form-label">{% trans "City" %}</label>
+    <input type="text" id="customer-city" class="form-control" required placeholder="{% trans 'Your city' %}">
+  </div>
+
+  <div class="form-group mb-3">
+    <label class="form-label">{% trans "Card Details" %}</label>
+    <div id="card-element" class="form-control"></div>
+  </div>
+
+  <button id="submit-order" class="btn btn-primary w-100">{% trans "Confirm Order" %}</button>
+  <button id="cancelCheckout">{% trans "Cancel" %}</button>
+  <p id="payment-result" class="mt-2 text-center"></p>
+</div>
+
+</div>
+
+<div class="spacer-lg"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Initialize Stripe
+        const stripe = Stripe("{{ STRIPE_PUBLISHABLE_KEY }}", {
+            locale: 'en'
+        });
+        const elements = stripe.elements();
+        const darkMode = document.body.classList.contains("dark-mode");
+        const style = {
+            base: {
+                color: darkMode ? "#f0f0f0" : "#32325d",
+                fontFamily: '"Segoe UI", Tahoma, sans-serif',
+                fontSize: "16px",
+                '::placeholder': {
+                    color: "#999"
+                }
+            },
+            invalid: {
+                color: "#fa755a",
+                iconColor: "#fa755a"
+            }
+        };
+        const card = elements.create("card", { style });
+        card.mount("#card-element");
+
+        // Load cart from localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartContainer = document.getElementById("cart-items-container");
+        const cartTotalElement = document.getElementById("cart-total");
+        const cartCountElement = document.getElementById("cart-count");
+
+        // Render cart items
+        function renderCart() {
+            const cartHeaderContainer = document.getElementById("cart-header-container");
+
+if (cart.length > 0) {
+    cartHeaderContainer.innerHTML = `
+        <div class="cart-header d-flex align-items-center justify-content-between px-3 py-2 fw-bold" style="background-color: #f8f9fa;">
+            <div class="cart-product-name" style="flex: 2.5;">${translations.product || "Product"}</div>
+            <div class="cart-product-price" style="flex: 1.8;">${translations.price || "Price"}</div>
+            <div class="cart-product-quantity" style="flex: 1.5;">${translations.quantity || "Quantity"}</div>
+            <div class="cart-product-total" style="flex: 1.2;">${translations.total || "Total"}</div>
+            <div class="cart-product-remove" style="flex: 0.5;">${translations.remove || "Remove"}</div>
+        </div>
+    `;
+} else {
+    cartHeaderContainer.innerHTML = "";
+}
+
+            cartContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                <div class="empty-cart animated-fade-in">
+                    <i class="fas fa-shopping-cart fa-4x"></i>
+                    <h2>${translations.emptyCartTitle}</h2>
+                    <p>${translations.emptyCartText}</p>
+                    <button id="back-home-btn" class="btn btn-primary">${translations.emptyCartButton}</button>
+                </div>
+                `;
+
+                // Add button click listener to redirect to homepage
+                document.getElementById('back-home-btn').addEventListener('click', () => {
+                window.location.href = '/';  // or your homepage URL
+                });
+                document.getElementById("checkout-button").style.display = 'none';
+                cartTotalElement.textContent = '0.00 €';
+                if (cartCountElement) cartCountElement.textContent = '0';
+                return;
+            }
+            
+
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                
+
+                const itemElement = document.createElement("div");
+                itemElement.className = "cart-item d-flex align-items-center justify-content-between px-3 py-2";
+                itemElement.innerHTML = `
+                <div class="cart-product-name d-flex flex-column align-items-center text-center" style="flex: 2;">
+                    <img src="${item.image}" alt="${item.name}" class="product-image-cart mb-2">
+                    <span class="fw-bold">${item.name}</span>
+                </div>
+                <div class="cart-product-price" style="flex: 1;">${item.price} €</div>
+                <div class="cart-product-quantity d-flex align-items-center justify-content-center" style="flex: 1.6;">
+                    <button class="btn btn-sm btn-outline-secondary me-2 btn-minus" data-index="${index}">−</button>
+                    <input type="number" class="form-control form-control-sm quantity-input" value="${item.quantity}" min="1" data-index="${index}" style="width: 50px;">
+                    <button class="btn btn-sm btn-outline-secondary ms-2 btn-plus" data-index="${index}">+</button>
+                </div>
+                <div class="cart-product-total" style="flex: 1;">${(item.price * item.quantity).toFixed(2)} €</div>
+                <div class="cart-product-remove" style="flex: 0.5;">
+                    <button class="btn btn-sm btn-danger btn-remove" data-index="${index}">
+                    <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                `;
+
+                cartContainer.appendChild(itemElement);
+            });
+
+            
+
+            cartTotalElement.textContent = `${total.toFixed(2)} €`;
+            if (cartCountElement) {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountElement.textContent = totalItems;
+            }
+        }
+
+        // Handle quantity changes
+        document.addEventListener("click", function(e) {
+            if (e.target.classList.contains("btn-minus") || e.target.parentElement.classList.contains("btn-minus")) {
+                const index = e.target.dataset.index || e.target.parentElement.dataset.index;
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity--;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    renderCart();
+                }
+            }
+            
+            if (e.target.classList.contains("btn-plus") || e.target.parentElement.classList.contains("btn-plus")) {
+                const index = e.target.dataset.index || e.target.parentElement.dataset.index;
+                cart[index].quantity++;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCart();
+            }
+            
+            if (e.target.classList.contains("btn-remove") || e.target.parentElement.classList.contains("btn-remove")) {
+                const index = e.target.dataset.index || e.target.parentElement.dataset.index;
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                renderCart();
+            }
+        });
+
+        // Handle direct input changes
+        document.addEventListener("change", function(e) {
+            if (e.target.classList.contains("quantity-input")) {
+                const index = e.target.dataset.index;
+                const newQuantity = parseInt(e.target.value);
+                if (newQuantity >= 1) {
+                    cart[index].quantity = newQuantity;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    renderCart();
+                } else {
+                    e.target.value = cart[index].quantity; // Reset to previous value
+                }
+            }
+        });
+
+        // Checkout form handling
+document.getElementById("checkout-button").addEventListener("click", () => {
+    const checkoutForm = document.getElementById("checkoutForm");
+    const checkoutOverlay = document.getElementById("checkoutOverlay");
+    
+    // Toggle la visibilité du formulaire
+    checkoutForm.classList.toggle("show");
+    
+    // Toggle la visibilité de l'overlay
+    checkoutOverlay.classList.toggle("show");
+});
+document.getElementById("cancelCheckout").addEventListener("click", () => {
+    document.getElementById("checkoutForm").classList.remove("show");
+    document.getElementById("checkoutOverlay").classList.remove("show");
+});
+
+
+
+        
+
+        // CSRF Token for Django
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // Submit order
+        // In your checkout handler
+        document.getElementById('submit-order').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const paymentResult = document.getElementById('payment-result');
+            paymentResult.textContent = '';
+            
+            try {
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                if (cart.length === 0) {
+                    throw new Error("Your cart is empty");
+                }
+
+                // 1. Create payment intent
+                const intentResponse = await fetch('/product/create_payment_intent/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({ 
+                        cart: cart.map(item => ({
+                            id: item.id,
+                            price: item.price,
+                            quantity: item.quantity
+                        }))
+                    })
+                });
+
+                if (!intentResponse.ok) {
+                    const errorData = await intentResponse.json();
+                    throw new Error(errorData.error || 'Failed to create payment intent');
+                }
+
+                const intentData = await intentResponse.json();
+
+                // 2. Create payment method
+                const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        name: document.getElementById('customer-name').value,
+                        email: document.getElementById('customer-email').value,
+                    },
+                });
+
+                if (pmError) throw pmError;
+
+                // 3. Confirm payment
+                const { error: confirmError } = await stripe.confirmCardPayment(
+                    intentData.clientSecret,
+                    {
+                        payment_method: paymentMethod.id,
+                    }
+                );
+
+                if (confirmError) throw confirmError;
+
+                // 4. Save order
+                const orderResponse = await fetch('/product/save_order/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({
+                        payment_intent_id: intentData.payment_intent_id,
+                        payment_method_id: paymentMethod.id,
+                        full_name: document.getElementById('customer-name').value,
+                        email: document.getElementById('customer-email').value,
+                        phone_number: document.getElementById('customer-phone').value,
+                        address: document.getElementById('customer-address').value,
+                        city: document.getElementById('customer-city').value
+                    })
+                });
+
+                if (!orderResponse.ok) {
+                    const errorData = await orderResponse.json();
+                    throw new Error(errorData.error || 'Failed to save order');
+                }
+
+                const orderData = await orderResponse.json();
+                
+                // Clear cart and redirect on success
+                localStorage.removeItem("cart");
+                const orderIds = Array.isArray(orderData.order_ids) ? orderData.order_ids.join(',') : '';
+                window.location.href = `/product/confirm_email/?orders=${orderIds}`;
+
+
+            } catch (err) {
+                console.error('Checkout error:', err);
+                paymentResult.textContent = err.message;
+                paymentResult.style.color = 'red';
+            }
+        });
+
+        // Initial render
+        renderCart();
+        AOS.init();
+    });
+</script>
+
+{% endblock %}
+
+{% include 'parts/footer.html' %}
+</body>

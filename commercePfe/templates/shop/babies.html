@@ -1,0 +1,192 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% trans "Babies" %} - Ashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/shop/babies.css' %}">
+</head>
+
+<body data-aos="fade-up">
+
+  {% include 'parts/navbar.html' %}
+
+  {% block content %}
+
+  <!-- ✅ HERO SECTION -->
+  <section class="hero">
+    <h1>{% trans "Babies" %}</h1>
+    <p>💖{% trans "Cuteness meets comfort — dress your baby in love from day one!" %}💖</p>
+  </section>
+<!-- ✅ PRODUCTS SECTION -->
+<section class="category-block" id="newborn">
+  <h2 class="category-title">{% trans "Newborn (0-3 months)" %}</h2>
+  <div class="products">
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+        <img src="{% static '/images/shop/babies/babies-newborn/bodysuits-babies.jpg' %}" alt='{% trans "Bodysuits" %}'>
+        <h5>{% trans "Bodysuits" %}</h5>
+        <p>{% trans "Soft snuggles for tiny explorers." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+    <div class="product-card" data-aos="fade-up" data-aos-duration="2000">
+        <img src="{% static '/images/shop/babies/babies-newborn/onesies-babies.jpg' %}" alt='{% trans "Onesies" %}'>
+        <h5>{% trans "Onesies" %}</h5>
+        <p>{% trans "Cozy comfort from nap time to playtime!" %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+    <div class="product-card" data-aos="fade-up" data-aos-duration="3000">
+        <img src="{% static '/images/shop/babies/babies-newborn/mittens-babies.jpg' %}" alt='{% trans "Mittens" %}'>
+        <h5>{% trans "Mittens" %}</h5>
+        <p>{% trans "Keep little hands warm and scratch-free." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 👠 SHOES SECTION -->
+<section class="category-block" id="baby-girls">
+<h2 class="category-title">{% trans "Baby Girls Clothing" %}</h2>
+<div class="products">
+  <div class="product-card" data-aos="fade-up" data-aos-duration="4000">
+      <img src="{% static '/images/shop/babies/babies-girls/dresses-babies.jpg' %}" alt='{% trans "Dresses" %}'>
+      <h5>{% trans "Dresses" %}</h5>
+      <p>{% trans "Twirl-ready cuteness for every precious moment!" %}</p>
+      <a href="#">{% trans "Shop Now" %}</a>
+  </div>
+
+  <div class="product-card" data-aos="fade-up" data-aos-duration="14000">
+      <img src="{% static '/images/shop/babies/babies-girls/sets-babies.jpg' %}" alt='{% trans "Sets" %}'>
+      <h5>{% trans "Sets" %}</h5>
+      <p>{% trans "Perfectly paired for easy, adorable outfits." %}</p>
+      <a href="#">{% trans "Shop Now" %}</a>
+  </div>
+
+  <div class="product-card" data-aos="fade-up" data-aos-duration="5000">
+      <img src="{% static '/images/shop/babies/babies-girls/sleepwear-babies.jpg' %}" alt='{% trans "Sleepwear" %}'>
+      <h5>{% trans "Sleepwear" %}</h5>
+      <p>{% trans "Sweet dreams start with soft, cozy styles." %}</p>
+      <a href="#">{% trans "Shop Now" %}</a>
+  </div>
+</div>
+</section>
+
+  <section class="category-block" id="baby-boys">
+    <h2 class="category-title">{% trans "Baby Boys Clothing" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="6000">
+          <img src="{% static '/images/shop/babies/babies-boys/sets-babies.jpg' %}" alt='{% trans "Sets" %}'>
+          <h5>{% trans "Sets" %}</h5>
+          <p>{% trans "Style made simple — mix, match & play!" %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="7000">
+          <img src="{% static '/images/shop/babies/babies-boys/pants-babies.jpg' %}" alt='{% trans "Pants" %}'>
+          <h5>{% trans "Pants" %}</h5>
+          <p>{% trans "Comfy little trousers for every adventure." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-duration="8000">
+          <img src="{% static '/images/shop/babies/babies-boys/bodysuits-babies.png' %}" alt='{% trans "Bodysuits" %}'>
+          <h5>{% trans "Bodysuits" %}</h5>
+          <p>{% trans "Snuggle-friendly softness for active little ones." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-block" id="shoes">
+    <h2 class="category-title">{% trans "Shoes & Booties" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="9000">
+        <img src="{% static '/images/shop/babies/babies-shoes/booties-babies.jpg' %}" alt='{% trans "Soft Sole Booties" %}'>
+        <h5>{% trans "Soft Sole Booties" %}</h5>
+        <p>{% trans "Tiny toes deserve soft, snuggly steps." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="10000">
+          <img src="{% static '/images/shop/babies/babies-shoes/prewalkers-babies.jpg' %}" alt='{% trans "Pre-walkers" %}'>
+          <h5>{% trans "Pre-walkers" %}</h5>
+          <p>{% trans "Ready for their first little adventures!" %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+        </div>    
+    </div>
+  </section>
+
+  <section class="category-block" id="accessories">
+    <h2 class="category-title">{% trans "Baby Accessories" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="11000">
+        <img src="{% static '/images/shop/babies/babies-accessories/bibs-babies.jpg' %}" alt='{% trans "Bibs" %}'>
+        <h5>{% trans "Bibs" %}</h5>
+        <p>{% trans "Mealtime mess? Handled in style!" %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="12000">
+          <img src="{% static '/images/shop/babies/babies-accessories/hats-babies.jpg' %}" alt='{% trans "Hats" %}'>
+          <h5>{% trans "Hats" %}</h5>
+          <p>{% trans "Cute and cozy protection for tiny heads." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+        </div>    
+      <div class="product-card" data-aos="fade-up" data-aos-duration="13000">
+          <img src="{% static '/images/shop/babies/babies-accessories/blankets-babies.jpg' %}" alt='{% trans "Blankets" %}'>
+          <h5>{% trans "Blankets" %}</h5>
+          <p>{% trans "Wrap them in warmth & love — perfect for snuggles." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+    </div>
+  </section>
+
+  <section class="category-block" id="toys">
+    <h2 class="category-title">{% trans "Baby Toys" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="14000">
+        <img src="{% static '/images/shop/babies/babies-toys/rattles-babies.jpg' %}" alt='{% trans "Rattles" %}'>
+        <h5>{% trans "Rattles" %}</h5>
+        <p>{% trans "Shake, smile, repeat! Fun for tiny hands." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="15000">
+          <img src="{% static '/images/shop/babies/babies-toys/plushtoys-babies.jpg' %}" alt='{% trans "Lunch Bags" %}'>
+          <h5>{% trans "Plush Toys" %}</h5>
+          <p>{% trans "The first best friend your baby will hug." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+        </div>    
+      <div class="product-card" data-aos="fade-up" data-aos-duration="16000">
+          <img src="{% static '/images/shop/babies/babies-toys/teethers-babies.jpg' %}" alt='{% trans "Teethers" %}'>
+          <h5>{% trans "Teethers" %}</h5>
+          <p>{% trans "Soothing little gums with fun, chewable joy." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+    </div>
+  </section>
+{% endblock content %}
+
+  {% include 'parts/footer.html' %}
+
+  <!-- ✅ SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    AOS.init();
+
+    document.getElementById("heart-icon").addEventListener("click", function () {
+      this.classList.toggle("liked");
+    });
+
+    document.getElementById("search-icon").addEventListener("click", function () {
+      let searchBox = document.querySelector(".search-box");
+      searchBox.style.display = searchBox.style.display === "block" ? "none" : "block";
+    });
+  </script>
+</body>
+
+</html>

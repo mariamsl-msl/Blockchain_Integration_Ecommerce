@@ -1,0 +1,291 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% trans "Men's Fashion" %} - Ashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="{% static 'css/shop/men.css' %}">
+
+</head>
+
+<body data-aos="fade-up">
+
+  {% include 'parts/navbar.html' %}
+
+  {% block content %}
+  <!-- ✅ HERO SECTION -->
+  <section class="hero">
+    <h1>{% trans "Men's Fashion" %}</h1>
+    <p>{% trans "Discover bold styles and timeless essentials — crafted for every modern man." %}</p>
+  </section>
+
+  <!-- ✅ PRODUCTS SECTION -->
+  <section class="category-block" id="clothing">
+      <h2 class="category-title">{% trans "Clothing" %}</h2>
+      <div class="products">
+        <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+            <img src="{% static '/images/shop/men/men-clothes/tshirts-men.jpg' %}" alt='{% trans "T-Shirts" %}'>
+            <h5>{% trans "T-Shirts" %}</h5>
+            <p>{% trans "Everyday comfort with effortless style." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="2000">
+            <img src="{% static '/images/shop/men/men-clothes/poloshirts-men.jpg' %}" alt='{% trans "Polo Shirts" %}''>
+            <h5>{% trans "Polo Shirts" %}</h5>
+            <p>{% trans "Classic smart-casual — perfect for any occasion." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="3000">
+            <img src="{% static '/images/shop/men/men-clothes/shirts-men.jpg' %}" alt='{% trans "Shirts (Formal / Casual)" %}'>
+            <h5>{% trans "Shirts (Formal / Casual)" %}</h5>
+            <p>{% trans "Sharp fits, from boardroom to brunch." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+        <!-- Added Product 5 -->
+        <div class="product-card" data-aos="fade-up" data-aos-duration="4000">
+            <img src="{% static '/images/shop/men/men-clothes/hoodies-men.jpg' %}" alt='{% trans "Hoodies & Sweatshirts" %}'>
+            <h5>{% trans "Hoodies & Sweatshirts" %}</h5>
+            <p>{% trans "Cozy up in style — comfort never looked this good." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+        <!-- Added Product 6 -->
+        <div class="product-card" data-aos="fade-up" data-aos-duration="5000">
+            <img src="{% static '/images/shop/men/men-clothes/jackets-men.jpg' %}" alt='{% trans "Jackets & Coats" %}'>
+            <h5>{% trans "Jackets & Coats" %}</h5>
+            <p>{% trans "Stay warm, stay iconic — outerwear that speaks." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+
+        <div class="product-card" data-aos="fade-up" data-aos-duration="6000">
+            <img src="{% static '/images/shop/men/men-clothes/suits-men.jpg' %}" alt='{% trans "Suits & Blazers" %}'>
+            <h5>{% trans "Suits & Blazers" %}</h5>
+            <p>{% trans "Tailored for success — look sharp, feel sharper." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+        </div>
+
+        <div class="product-card" data-aos="fade-up" data-aos-duration="7000">
+            <img src="{% static '/images/shop/men/men-clothes/pants-men.jpg' %}" alt='{% trans "Pants & Trousers" %}'>
+            <h5>{% trans "Pants & Trousers" %}</h5>
+            <p>{% trans "The perfect fit for every stride." %}</p>
+            <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="8000">
+          <img src="{% static '/images/shop/men/men-clothes/jeans-men.jpg' %}" alt='{% trans "Jeans" %}'>
+          <h5>{% trans "Jeans" %}</h5>
+          <p>{% trans "The timeless essential for every wardrobe." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="9000">
+          <img src="{% static '/images/shop/men/men-clothes/shorts-men.jpg' %}" alt='{% trans "Shorts" %}'>
+          <h5>{% trans "Shorts" %}</h5>
+          <p>{% trans "Breeze through the day in comfort and style." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="10000">
+          <img src="{% static '/images/shop/men/men-clothes/activewear-men.jpg' %}" alt='{% trans "Activewear / Sportswear" %}'>
+          <h5>{% trans "Activewear / Sportswear" %}</h5>
+          <p>{% trans "Gear up for greatness, train in style." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+    
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="12000">
+          <img src="{% static '/images/shop/men/men-clothes/loungewear-men.png' %}" alt='{% trans "Sportswear" %}''>
+          <h5>{% trans "Loungewear / Sleepwear" %}</h5>
+          <p>{% trans "Relax in ultimate comfort." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 👠 SHOES SECTION -->
+  <section class="category-block" id="shoes">
+    <h2 class="category-title">{% trans "Shoes" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="14000">
+          <img src="{% static '/images/shop/men/men-shoes/sneakers-men.jpg' %}" alt='{% trans "Sneakers" %}'>
+          <h5>{% trans "Sneakers" %}</h5>
+          <p>{% trans "Walk your way in comfort and street style." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="15000">
+          <img src="{% static '/images/shop/men/men-shoes/casual-men.jpg' %}" alt='{% trans "Casual Shoes" %}'>
+          <h5>{% trans "Casual Shoes" %}</h5>
+          <p>{% trans "Style meets ease for every day." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="16000">
+          <img src="{% static '/images/shop/men/men-shoes/dress-men.jpg' %}" alt='{% trans "Dress Shoes" %}'>
+          <h5>{% trans "Dress Shoes" %}</h5>
+          <p>{% trans "Sharp steps for sharp looks." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="17000">
+          <img src="{% static '/images/shop/men/men-shoes/boots-men.jpg' %}" alt='{% trans "Boots" %}'>
+          <h5>{% trans "Boots" %}</h5>
+          <p>{% trans "Tough, stylish, and made for adventure." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="18000">
+          <img src="{% static '/images/shop/men/men-shoes/loafers-men.jpg' %}" alt='{% trans "Loafers" %}'>
+          <h5>{% trans "Loafers" %}</h5>
+          <p>{% trans "Slip on sophistication." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="19000">
+          <img src="{% static '/images/shop/men/men-shoes/sandals-men.jpg' %}" alt='{% trans "Sandals & Slippers" %}'>
+          <h5>{% trans "Sandals & Slippers" %}</h5>
+          <p>{% trans "Easy comfort, effortless style." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="20000">
+          <img src="{% static '/images/shop/men/men-shoes/sportsshoes-men.jpg' %}" alt='{% trans "Sports Shoes" %}'>
+          <h5>{% trans "Sports Shoes" %}</h5>
+          <p>{% trans "Engineered to perform, built to last." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+  </section>
+
+  <section class="category-block" id="accessories">
+    <h2 class="category-title">{% trans "Accessories" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="23000">
+          <img src="{% static '/images/shop/men/men-accessories/watches-men.jpg' %}" alt='{% trans "Watches" %}'>
+          <h5>{% trans "Watches" %}</h5>
+          <p>{% trans "Timeless elegance on your wrist." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="24000">
+          <img src="{% static '/images/shop/men/men-accessories/belts-men.jpg' %}" alt='{% trans "Belts" %}''>
+          <h5>{% trans "Belts" %}</h5>
+          <p>{% trans "The perfect finishing touch." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="25000">
+          <img src="{% static '/images/shop/men/men-accessories/sunglasses-men.jpg' %}" alt='{% trans "Sunglasses" %}'>
+          <h5>{% trans "Sunglasses" %}</h5>
+          <p>{% trans "Shade your eyes with style." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="26000">
+          <img src="{% static '/images/shop/men/men-accessories/hats-men.jpg' %}" alt='{% trans "Hats & Caps" %}'>
+          <h5>{% trans "Hats & Caps" %}</h5>
+          <p>{% trans "Top off your look with flair." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="27000">
+          <img src="{% static '/images/shop/men/men-accessories/ties-men.jpg' %}" alt='{% trans "Ties & Bowties" %}'>
+          <h5>{% trans "Ties & Bowties" %}</h5>
+          <p>{% trans "Tie your look together with class." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="28000">
+          <img src="{% static '/images/shop/men/men-accessories/gloves-men.jpg' %}" alt='{% trans "Gloves & Scarves" %}'>
+          <h5>{% trans "Gloves & Scarves" %}</h5>
+          <p>{% trans "Wrap yourself in warmth & elegance." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-duration="29000">
+          <img src="{% static '/images/shop/men/men-accessories/cufflinks-men.jpg' %}" alt='{% trans "Cufflinks" %}'>
+          <h5>{% trans "Cufflinks" %}</h5>
+          <p>{% trans "Small details, big impression." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="29000">
+        <img src="{% static '/images/shop/men/men-accessories/wallets-men.jpg' %}" alt='{% trans "Wallets" %}'>
+        <h5>{% trans "Wallets" %}</h5>
+        <p>{% trans "Slim, sleek & smart — carry your essentials in style." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="30000">  
+        <img src="{% static '/images/shop/men/men-accessories/bags-men.png' %}" alt='{% trans "Bags & Backpacks" %}'>
+        <h5>{% trans "Bags & Backpacks" %}</h5>
+        <p>{% trans "Function meets fashion — carry it your way." %}</p>
+        <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="30000">  
+      <img src="{% static '/images/shop/men/men-accessories/bracelets-men.jpg' %}" alt='{% trans "Bracelets" %}''>
+      <h5>{% trans "Bracelets" %}</h5>
+      <p>{% trans " " %}</p>
+      <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="30000">  
+      <img src="{% static '/images/shop/men/men-accessories/rings-men.jpg' %}" alt='{% trans "Rings" %}''>
+      <h5>{% trans "Rings" %}</h5>
+      <p>{% trans " " %}</p>
+      <a href="#">{% trans "Shop Now" %}</a>
+    </div>
+
+    </div>
+  </section>
+
+  <section class="category-block" id="grooming">
+    <h2 class="category-title">{% trans "Grooming & Self-care" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="35000">
+          <img src="{% static '/images/shop/men/men-selfcare/beardcare-men.jpg' %}" alt='{% trans "Beard Care" %}'>
+          <h5>{% trans "Beard Care & Hair Styling" %}</h5>
+          <p>{% trans "Shape your signature look." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="36000">
+          <img src="{% static '/images/shop/men/men-selfcare/fragrances-men.jpg' %}" alt='{% trans "Fragrances" %}'>
+          <h5>{% trans "Fragrances" %}</h5>
+          <p>{% trans "Leave a lasting impression, one scent at a time." %}</p>
+          <a href="#">{% trans "Shop Now" %}</a>
+      </div>
+    </div>
+  </section>
+
+  {% endblock content %}
+  {% include 'parts/footer.html' %}
+
+  <!-- ✅ SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Initialisation de l'animation AOS (Animation On Scroll)
+    AOS.init();
+
+    // Favorite Icon Toggle
+    document.getElementById("heart-icon").addEventListener("click", function () {
+      this.classList.toggle("liked");
+    });
+
+    // Toggle Search Box
+    document.getElementById("search-icon").addEventListener("click", function () {
+      let searchBox = document.querySelector(".search-box");
+      searchBox.style.display = searchBox.style.display === "block" ? "none" : "block";
+    });
+  </script>
+</body>
+
+</html>

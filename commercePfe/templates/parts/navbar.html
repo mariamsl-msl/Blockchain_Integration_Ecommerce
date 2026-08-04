@@ -1,0 +1,238 @@
+{% load static %}
+{% load i18n %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>M&C - {% block title %}{% trans "Fashion Store" %}{% endblock %}</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{% static 'css/parts/navbar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/parts/dark_navbar.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+/* Show dropdown on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+.dropdown-menu {
+  background-color: #000000bf;
+  border: none;
+}
+
+.dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-item:hover {
+  background-color: #d7c2ff;
+}
+
+
+  .logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  background: linear-gradient(45deg, #c471ed, #623caf, #ff6940);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  transition: transform 0.3s ease;
+}
+
+.logo-text:hover {
+  transform: scale(1.05);
+}
+
+.mc-letter {
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.2);
+}
+
+.ampersand {
+  color: #ff4081;
+  font-size: 2.2rem;
+  margin: 0 4px;
+  font-family: 'Great Vibes', cursive;
+}
+
+.user-circle {
+  width: 36px;
+  height: 36px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-circle i {
+  font-size: 18px;
+  color: #333;
+}
+
+.user-icon-wrapper:hover .user-circle {
+  background-color: #793fed;
+  box-shadow: 0 0 8px rgba(121, 62, 237, 0.4);
+}
+
+.user-icon-wrapper:hover .user-circle i {
+  color: #fff;
+}
+
+
+
+
+
+
+</style>
+<body class="light-mode" >
+  <nav id="mainNavbar" class="navbar navbar-expand-lg px-4 ">
+<a class="navbar-brand d-flex align-items-center logo-text" href="{% url 'home' %}">
+  <i class="fas fa-gem me-2 text-pink"></i>
+  <span class="mc-letter">M</span><span class="ampersand">&</span><span class="mc-letter">C</span>
+</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto me-4">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a></li>
+        <li class="nav-item dropdown women-dropdown">
+            <a class="nav-link" href="{% url 'women' %}" id="womenDropdown" role="button">
+              {% trans "Women" %}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="womenDropdown">
+              <li><a class="dropdown-item" href="{% url 'women' %}#clothing">{% trans "Clothing" %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'women' %}#shoes">{% trans "Shoes" %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'women' %}#bags">{% trans "Bags & Accessories" %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'women' %}#grooming">{% trans "Grooming & Beauty" %}</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown men-dropdown">
+          <a class="nav-link" href="{% url 'men' %}" id="menDropdown" role="button">
+            {% trans "Men" %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menDropdown">
+            <li><a class="dropdown-item" href="{% url 'men' %}#clothing">{% trans "Clothing" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'men' %}#shoes">{% trans "Shoes" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'men' %}#accessories">{% trans "Accessories" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'men' %}#grooming">{% trans "Grooming & Self-care" %}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown girls-dropdown">
+          <a class="nav-link" href="{% url 'girls' %}" id="girlsDropdown" role="button">
+            {% trans "Girls" %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="girlsDropdown">
+            <li><a class="dropdown-item" href="{% url 'girls' %}#clothing">{% trans "Clothing" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'girls' %}#shoes">{% trans "Shoes" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'girls' %}#accessories">{% trans "Accessories" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'girls' %}#school">{% trans "School Essentials" %}</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown babies-dropdown">
+          <a class="nav-link" href="{% url 'babies' %}" id="babiesDropdown" role="button">{% trans "Babies" %}</a>
+          <ul class="dropdown-menu" aria-labelledby="babiesDropdown">
+            <li><a class="dropdown-item" href="{% url 'babies' %}#newborn">{% trans "Newborn (0-3 months)" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'babies' %}#baby-girls">{% trans "Baby Girls Clothing" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'babies' %}#baby-boys">{% trans "Baby Boys Clothing" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'babies' %}#shoes">{% trans "Shoes & Booties" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'babies' %}#accessories">{% trans "Baby Accessories" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'babies' %}#toys">{% trans "Baby Toys" %}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown boys-dropdown">
+          <a class="nav-link" href="{% url 'boys' %}" id="boysDropdown" role="button">{% trans "Boys" %}</a>
+          <ul class="dropdown-menu" aria-labelledby="boysDropdown">
+            <li><a class="dropdown-item" href="{% url 'boys' %}#clothing">{% trans "Clothing" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'boys' %}#shoes">{% trans "Shoes" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'boys' %}#accessories">{% trans "Accessories" %}</a></li>
+            <li><a class="dropdown-item" href="{% url 'boys' %}#school">{% trans "School Essentials" %}</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="nav-icons d-flex align-items-center">
+        <i class="fas fa-search me-3" id="search-icon" style="cursor: pointer;"></i>
+        <div id="search-box">
+          <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}">
+        </div>
+
+        <i class="far fa-heart me-3" id="heart-icon" style="cursor: pointer;"></i>
+
+        <div class="cart-container position-relative me-3" style="cursor: pointer;">
+          <a href="{% url 'cart' %}">
+            <i class="fas fa-shopping-cart" id="cart-icon"></i>
+            <span class="cart-count badge bg-danger text-white position-absolute top-0 start-100 translate-middle rounded-pill" style="font-size: 12px;" id="cart-count">0</span>
+          </a>
+        </div>
+
+        <form action="" method="post" class="me-2">{% csrf_token %}
+          {% get_current_language as LANGUAGE_CODE %}
+          <button type="submit" name="language" value="{% if LANGUAGE_CODE == 'fr' %}en{% else %}fr{% endif %}" class="language-switcher">
+            <i class="fas fa-globe"></i>
+          </button>
+        </form>
+
+        <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode">
+          <i class="fas fa-moon"></i>
+        </button>
+
+      <div class="nav-item user-icon-wrapper me-3">
+        <a class="nav-link p-0" href="{% url 'confirm_email' %}" title="Confirm Delivery">
+          <div class="user-circle d-flex justify-content-center align-items-center">
+            <i class="fas fa-user"></i>
+          </div>
+        </a>
+      </div>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const searchIcon = document.getElementById("search-icon");
+    const searchBox = document.getElementById("search-box");
+    const heartIcon = document.getElementById("heart-icon");
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    searchIcon.addEventListener("click", () => {
+      searchBox.style.display = (searchBox.style.display === "none" || searchBox.style.display === "") ? "block" : "none";
+    });
+
+    heartIcon.addEventListener("click", () => {
+      heartIcon.classList.toggle("active");
+      heartIcon.classList.toggle("far");
+      heartIcon.classList.toggle("fas");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!searchBox.contains(e.target) && !searchIcon.contains(e.target)) {
+        searchBox.style.display = "none";
+      }
+    });
+
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.replace("light-mode", "dark-mode");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (body.classList.contains("dark-mode")) {
+        body.classList.replace("dark-mode", "light-mode");
+        localStorage.setItem("theme", "light");
+      } else {
+        body.classList.replace("light-mode", "dark-mode");
+        localStorage.setItem("theme", "dark");
+      }
+    });
+    // 🧮 Update cart count
+  document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = document.getElementById("cart-count");
+    if (cartCount) cartCount.textContent = cart.length;
+  });
+
+
+  </script>

@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmetics - Ashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+
+</head>
+
+<body>
+  {% include 'parts/navbar.html' %}
+
+  {% block content %}
+  <!-- ✅ HERO SECTION -->
+  <section class="hero">
+    <h1>Cosmetics</h1>
+    <p>Glow up your beauty routine with our premium cosmetic collection.</p>
+  </section>
+
+  <!-- ✅ PRODUCTS SECTION -->
+  <section class="products">
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic1.png' %}" alt="Luxury Lipstick">
+      <h5>Luxury Lipstick</h5>
+      <p>Bold & long-lasting colors for every mood.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic2.png' %}" alt="Silk Foundation">
+      <h5>Silk Foundation</h5>
+      <p>Flawless skin finish with 24H hydration.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic3.png' %}" alt="Glow Highlighter">
+      <h5>Glow Highlighter</h5>
+      <p>Illuminate your features with a radiant shine.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic4.png' %}" alt="Perfume">
+      <h5>Rose Bloom Perfume</h5>
+      <p>A floral scent that lasts all day long.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic5.png' %}" alt="Mascara">
+      <h5>Waterproof Mascara</h5>
+      <p>Lengthen and lift your lashes with ease.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic6.png' %}" alt="Makeup Remover">
+      <h5>Gentle Makeup Remover</h5>
+      <p>Cleanse your skin while keeping it soft & fresh.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic7.png' %}" alt="Anti-Aging Cream">
+      <h5>Anti-Aging Cream</h5>
+      <p>Reduce fine lines and wrinkles with our rejuvenating formula.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic8.png' %}" alt="Nail Polish">
+      <h5>Classic Nail Polish</h5>
+      <p>Brighten your nails with rich, glossy colors.</p>
+      <a href="#">Shop Now</a>
+    </div>
+
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/cosmetic9.png' %}" alt="Hydrating Serum">
+      <h5>Hydrating Serum</h5>
+      <p>Deeply hydrate and refresh your skin.</p>
+      <a href="#">Shop Now</a>
+    </div>
+  </section>
+  {% endblock content %}
+  <!-- ✅ SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();  // Initialise AOS
+  </script>
+</body>
+
+</html>

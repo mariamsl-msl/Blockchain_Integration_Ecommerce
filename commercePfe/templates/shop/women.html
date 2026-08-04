@@ -1,0 +1,336 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% trans "Women's Fashion" %} - Ashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/shop/women.css' %}">
+  <link rel="stylesheet" href="{% static 'css/shop/women_dark.css' %}">
+
+</head>
+
+<body data-aos="fade-up">
+
+  {% include 'parts/navbar.html' %}
+
+  {% block content %}
+  <!-- ✅ HERO SECTION -->
+  <section class="hero-women">
+    <h1>{% trans "Women's fashion" %}</h1>
+    <p>{% trans "Explore the latest collections and trends in women's fashion. Find the best styles for every occasion." %}</p>
+  </section>
+
+  <!-- ✅ PRODUCTS SECTION -->
+  <section class="category-block" id="clothing">
+      <h2 class="category-title">{% trans "Clothing" %}</h2>
+      <div class="products">
+        <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+            <img src="{% static '/images/shop/women/women-clothes/dresses-women.jpg' %}" alt='{% trans "Dresses" %}''>
+            <h5>{% trans "Dresses" %}</h5>
+            <p>{% trans "Flatter your figure with the perfect dress for any occasion." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Dresses">{% trans "Shop Now" %}</a>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="2000">
+            <img src="{% static '/images/shop/women/women-clothes/blouses-women.jpg' %}" alt='{% trans "Tops & Blouses" %}'>
+            <h5>{% trans "Tops & Blouses" %}</h5>
+            <p>{% trans "Elevate your everyday look with stylish tops and chic blouses." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Tops%20%26%20Blouses">{% trans "Shop Now" %}</a>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-duration="3000">
+            <img src="{% static '/images/shop/women/women-clothes/tshirts-women.jpg' %}" alt='{% trans "T-Shirts" %}'>
+            <h5>{% trans "T-Shirts" %}</h5>
+            <p>{% trans "Effortless comfort meets trendy style in every tee." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=T-Shirts">{% trans "Shop Now" %}</a>
+        </div>
+        <!-- Added Product 5 -->
+        <div class="product-card" data-aos="fade-up" data-aos-duration="4000">
+            <img src="{% static '/images/shop/women/women-clothes/shirts-women.png' %}" alt='{% trans "Shirts" %}'>
+            <h5>{% trans "Shirts" %}</h5>
+            <p>{% trans "Classic cuts for modern, sharp, and polished vibes." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Shirts">{% trans "Shop Now" %}</a>
+        </div>
+        <!-- Added Product 6 -->
+        <div class="product-card" data-aos="fade-up" data-aos-duration="5000">
+            <img src="{% static '/images/shop/women/women-clothes/sweaters-women.jpg' %}" alt='{% trans "Knitwear & Sweaters" %}'>
+            <h5>{% trans "Knitwear & Sweaters" %}</h5>
+            <p>{% trans "Wrap yourself in cozy and elegant layers." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Knitwear%20%26%20Sweaters"> {% trans "Shop Now" %}</a>
+        </div>
+
+        <div class="product-card" data-aos="fade-up" data-aos-duration="6000">
+            <img src="{% static '/images/shop/women/women-clothes/hoodies-women.jpg' %}" alt='{% trans "Hoodies & Sweatshirts" %}'>
+            <h5>{% trans "Hoodies & Sweatshirts" %}</h5>
+            <p>{% trans "Stay snug and stylish from street to sofa." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Hoodies%20%26%20Sweatshirts">{% trans "Shop Now" %}</a>
+        </div>
+
+        <div class="product-card" data-aos="fade-up" data-aos-duration="7000">
+            <img src="{% static '/images/shop/women/women-clothes/jackets-women.jpg' %}" alt='{% trans "Jackets & Coats" %}'>
+            <h5>{% trans "Jackets & Coats" %}</h5>
+            <p>{% trans "Your statement outerwear for every season." %}</p>
+            <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Jackets%20%26%20Coats">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="8000">
+          <img src="{% static '/images/shop/women/women-clothes/blazers-women.png' %}" alt='{% trans "Blazers" %}'>
+          <h5>{% trans "Blazers" %}</h5>
+          <p>{% trans "Power up your wardrobe with tailored perfection." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Blazers">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="9000">
+          <img src="{% static '/images/shop/women/women-clothes/pants-women.jpg' %}" alt='{% trans "Pants & Trousers" %}'>
+          <h5>{% trans "Pants & Trousers" %}</h5>
+          <p>{% trans "Polished, comfy, and made to move with you." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Pants%20%26%20Trousers">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="10000">
+          <img src="{% static '/images/shop/women/women-clothes/jeans-women.jpg' %}" alt='{% trans "Jeans" %}'>
+          <h5>{% trans "Jeans" %}</h5>
+          <p>{% trans "Timeless fits and washes for every figure." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Jeans">{% trans "Shop Now" %}</a>
+      </div>
+      
+      <div class="product-card" data-aos="fade-up" data-aos-duration="11000">
+          <img src="{% static '/images/shop/women/women-clothes/skirts-women.jpg' %}" alt='{% trans "Skirts" %}'>
+          <h5>{% trans "Skirts" %}</h5>
+          <p>{% trans "Flirty, flowy or formal — your perfect skirt awaits." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Skirts">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="12000">
+          <img src="{% static '/images/shop/women/women-clothes/activewear-women.jpg' %}" alt='{% trans "Sportswear" %}'>
+          <h5>{% trans "Activewear / Sportswear" %}</h5>
+          <p>{% trans "Move in style, perform in comfort." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Activewear%20%2F%20Sportswear">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="13000">
+          <img src="{% static '/images/shop/women/women-clothes/pajamas-women.jpg' %}" alt='{% trans "Pajamas" %}'>
+          <h5>{% trans "Loungewear / Pajamas" %}</h5>
+          <p>{% trans "Relaxed, soft, and cozy for every night in." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=clothing&category=Loungewear%20%2F%20Pajamas">{% trans "Shop Now" %}</a>
+      </div>
+  </section>
+
+  <!-- 👠 SHOES SECTION -->
+  <section class="category-block" id="shoes">
+    <h2 class="category-title">{% trans "Shoes" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="14000">
+          <img src="{% static '/images/shop/women/women-shoes/sneakers-women.jpg' %}" alt='{% trans "Sneakers" %}'>
+          <h5>{% trans "Sneakers" %}</h5>
+          <p>{% trans "Step into comfort and effortless street style." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Sneakers">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="15000">
+          <img src="{% static '/images/shop/women/women-shoes/heels-women.jpg' %}" alt='{% trans "Heels" %}'>
+          <h5>{% trans "Heels" %}</h5>
+          <p>{% trans "Elevate every outfit — confidence starts from the ground up." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Heels">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="16000">
+          <img src="{% static '/images/shop/women/women-shoes/flats-women.jpg' %}" alt='{% trans "Flats" %}'>
+          <h5>{% trans "Flats" %}</h5>
+          <p>{% trans "Chic, comfy, and perfect for all-day wear." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Flats">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="17000">
+          <img src="{% static '/images/shop/women/women-shoes/sandals-women.jpg' %}" alt='{% trans "Sandals" %}'>
+          <h5>{% trans "Sandals" %}</h5>
+          <p>{% trans "Breezy elegance for sun-soaked strolls." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Sandals">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="18000">
+          <img src="{% static '/images/shop/women/women-shoes/loafers-women.jpg' %}" alt='{% trans "Loafers" %}'>
+          <h5>{% trans "Loafers" %}</h5>
+          <p>{% trans "Polished comfort for workdays and weekends." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Loafers">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="19000">
+          <img src="{% static '/images/shop/women/women-shoes/ankle-women.jpg' %}" alt='{% trans "Ankle Boots" %}'>
+          <h5>{% trans "Ankle Boots" %}</h5>
+          <p>{% trans "Effortless style for any season and any outfit." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Ankle%20Boots">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="20000">
+          <img src="{% static '/images/shop/women/women-shoes/knee-women.jpg' %}" alt='{% trans "Knee-High Boots" %}'>
+          <h5>{% trans "Knee-High Boots" %}</h5>
+          <p>{% trans "Bold, elegant and perfect for statement looks." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Knee-High%20Boots">{% trans "Shop Now" %}</a>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-duration="21000">
+          <img src="{% static '/images/shop/women/women-shoes/combat-women.png' %}" alt='{% trans "Combat Boots" %}'>
+          <h5>{% trans "Combat Boots" %}</h5>
+          <p>{% trans "Edgy, durable and made to match your attitude." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Combat%20Boots">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="22000">  
+          <img src="{% static '/images/shop/women/women-shoes/slippers-women.jpg' %}" alt='{% trans "Slippers" %}''>
+          <h5>{% trans "Slippers" %}</h5>
+          <p>{% trans "Soft, cozy essentials for home comfort." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=shoes&category=Slippers">{% trans "Shop Now" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-block" id="bags">
+    <h2 class="category-title">{% trans "Bags & Accessories" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="23000">
+          <img src="{% static '/images/shop/women/women-bags/handbags-women.jpg' %}" alt='{% trans "Handbags" %}'>
+          <h5>{% trans "Handbags & Shoulder Bags" %}</h5>
+          <p>{% trans "Your everyday companion — elegance meets practicality." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Handbags%20%26%20Shoulder%20Bags">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="24000">
+          <img src="{% static '/images/shop/women/women-bags/crossbody-women.png' %}" alt='{% trans "Crossbody Bags" %}'>
+          <h5>{% trans "Crossbody Bags" %}</h5>
+          <p>{% trans "Stay hands-free, stay stylish on the move." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Crossbody%20Bags">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="25000">
+          <img src="{% static '/images/shop/women/women-bags/clutches-women.png' %}" alt='{% trans "Clutches" %}'>
+          <h5>{% trans "Clutches" %}</h5>
+          <p>{% trans "Chic essentials for your most glamorous nights." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Clutches">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="26000">
+          <img src="{% static '/images/shop/women/women-bags/backpacks-women.png' %}" alt='{% trans "Backpacks" %}'>
+          <h5>{% trans "Backpacks" %}</h5>
+          <p>{% trans "Carry comfort and style on your back." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Backpacks">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="27000">
+          <img src="{% static '/images/shop/women/women-bags/wallets-women.jpg' %}" alt='{% trans "Wallets" %}'>
+          <h5>{% trans "Wallets" %}</h5>
+          <p>{% trans "Compact luxury for your daily essentials." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Wallets">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="28000">
+          <img src="{% static '/images/shop/women/women-bags/belts-women.jpg' %}" alt='{% trans "Belts" %}'>
+          <h5>{% trans "Belts" %}</h5>
+          <p>{% trans "Define your style, shape your silhouette." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Belts">{% trans "Shop Now" %}</a>
+      </div>
+      <div class="product-card" data-aos="fade-up" data-aos-duration="29000">
+          <img src="{% static '/images/shop/women/women-bags/sunglasses-women.png' %}" alt='{% trans "Sunglasses" %}'>
+          <h5>{% trans "Sunglasses" %}</h5>
+          <p>{% trans "Shine bright — your perfect shade companion." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Sunglasses">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="30000">  
+          <img src="{% static '/images/shop/women/women-bags/jewelry.png' %}" alt='{% trans "Jewellery" %}'>
+          <h5>{% trans "Jewellery (Necklaces, Earrings, Bracelets)" %}</h5>
+          <p>{% trans "Sparkle, shine, and complete your look." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Jewellery">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="31000">
+          <img src="{% static '/images/shop/women/women-bags/hats-women.jpg' %}" alt='{% trans "Hats & Caps" %}'>
+          <h5>{% trans "Hats & Caps" %}</h5>
+          <p>{% trans "Top off your outfit with statement headwear." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Hats%20%26%20Caps">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="32000">
+        <img src="{% static '/images/shop/women/women-bags/scarves-women.jpg' %}" alt='{% trans "Scarves & Shawls" %}'>
+        <h5>{% trans "Scarves & Shawls" %}</h5>
+        <p>{% trans "Wrap yourself in cozy sophistication." %}</p>
+        <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Scarves%20%26%20Shawls">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="33000">
+        <img src="{% static '/images/shop/women/women-bags/gloves-women.png' %}" alt='{% trans "Gloves" %}'>
+        <h5>{% trans "Gloves" %}</h5>
+        <p>{% trans "Warmth and elegance at your fingertips." %}</p>
+        <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Gloves">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="34000">
+        <img src="{% static '/images/shop/women/women-bags/hair-women.jpg' %}" alt='{% trans "Hair Accessories" %}'>
+        <h5>{% trans "Hair Accessories" %}</h5>
+        <p>{% trans "Because great style starts from the top." %}</p>
+        <a href="{% url 'product_list' %}?target_audience=women&main_category=bags&category=Hair%20Accessories">{% trans "Shop Now" %}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="category-block" id="grooming">
+    <h2 class="category-title">{% trans "Grooming & Beauty" %}</h2>
+    <div class="products">
+      <div class="product-card" data-aos="fade-up" data-aos-duration="35000">
+          <img src="{% static '/images/shop/women/women-beauty/skincare-women.jpg' %}" alt='{% trans "Skincare" %}'>
+          <h5>{% trans "Skincare" %}</h5>
+          <p>{% trans "Nourish, glow, and reveal your natural beauty." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=self-care&category=Skincare">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="36000">
+          <img src="{% static '/images/shop/women/women-beauty/perfumes-women.jpg' %}" alt='{% trans "Perfumes" %}'>
+          <h5>{% trans "Perfumes" %}</h5>
+          <p>{% trans "Define your essence — leave a lasting impression." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=self-care&category=Perfumes">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="37000">
+          <img src="{% static '/images/shop/women/women-beauty/makeup-women.jpg' %}" alt='{% trans "Makeup" %}'>
+          <h5>{% trans "Makeup" %}</h5>
+          <p>{% trans "Unleash your creativity, highlight your beauty." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=self-care&category=Makeup">{% trans "Shop Now" %}</a>
+      </div>
+
+      <div class="product-card" data-aos="fade-up" data-aos-duration="38000">
+          <img src="{% static '/images/shop/women/women-beauty/haircare-women.jpg' %}" alt='{% trans "Haircare" %}'>
+          <h5>{% trans "Haircare" %}</h5>
+          <p>{% trans "Strong, shiny, and always flawless strands." %}</p>
+          <a href="{% url 'product_list' %}?target_audience=women&main_category=self-care&category=Haircare">{% trans "Shop Now" %}</a>
+      </div>  
+    </div>
+  </section>
+
+  {% endblock content %}
+    {% include 'parts/footer.html' %}
+  <!-- ✅ SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Initialisation de l'animation AOS (Animation On Scroll)
+    AOS.init();
+
+    // Favorite Icon Toggle
+    document.getElementById("heart-icon").addEventListener("click", function () {
+      this.classList.toggle("liked");
+    });
+
+    // Toggle Search Box
+    document.getElementById("search-icon").addEventListener("click", function () {
+      let searchBox = document.querySelector(".search-box");
+      searchBox.style.display = searchBox.style.display === "block" ? "none" : "block";
+    });
+  </script>
+</body>
+
+</html>

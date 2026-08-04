@@ -1,0 +1,177 @@
+    /* Styles CSS (inchangés) */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 50px 60px 60px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .hero-left {
+      flex: 4;
+      background-color:rgb(227, 213, 237);
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 40px;
+      gap: 40px;
+      border-radius: 15px;
+      height: 500px;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-left img {
+      height: 100%;
+      width: auto;
+      max-width: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+      animation: fadeInRight 1s ease forwards;
+    }
+
+    .hero-left .text-content {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeInLeft 1s ease forwards;
+    }
+
+    .hero-left h1 {
+      font-size: 50px;
+      font-family: cursive;
+      margin-bottom: 20px;
+    }
+
+    .hero-left p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    .hero-left .btn {
+      margin-top: 10px;
+      font-size: 14px;
+      padding: 10px 25px;
+      width: fit-content;
+      background-color:rgb(194, 150, 226); /* Light pastel pink */
+      color: #171717;
+      border: 2px solid rgb(194, 150, 226); /* Match the background color */
+      border-radius: 25px;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-left .btn:hover {
+      background-color:rgb(124, 44, 91); /* Lighter pink when hovered */
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-right {
+      flex: 3;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .box {
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .box img:hover {
+      transform: scale(1.1);
+    }
+
+    .box h5 {
+      margin: 10px 0 5px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .box p {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .box a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 10px 25px; 
+      display: inline-block;
+      transition: color 0.3s ease;
+      border-radius: 25px; 
+    }
+    
+    
+
+    .box a:hover {
+      color: #363031;
+    }
+
+    .men { background-color:rgb(144, 195, 227); }
+    .girls { background-color:rgb(249, 220, 220); }
+    .babies { background-color:rgb(255, 209, 173); }
+    .boys { background-color: rgb(186, 219, 239); }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-left, .hero-right {
+        width: 100%;
+        height: auto;
+      }
+
+      .hero-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-left img {
+        max-height: 250px;
+      }
+      
+    }

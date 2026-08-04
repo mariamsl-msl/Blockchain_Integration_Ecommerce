@@ -1,0 +1,106 @@
+/* Smooth animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Email instruction paragraph */
+.email-info-message {
+  max-width: 720px;
+  margin: 40px auto 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #2c3e50;
+  background: #eef5ff;
+  border-left: 5px solid #793fed;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Wrapper for centering the card */
+.email-form-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+/* Card container */
+.email-form-card {
+  background: white;
+  border-radius: 14px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  max-width: 480px;
+  width: 100%;
+  animation: fadeInUp 0.9s ease-out;
+}
+
+/* Title */
+.email-form-card h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2d3436;
+  margin-bottom: 1.8rem;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+}
+
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #2c7be5;
+  outline: none;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: #793fed;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #662d9c;
+}
+
+/* Error Styling */
+.form-error {
+  color: #e74c3c;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+

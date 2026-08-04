@@ -1,0 +1,151 @@
+{% extends 'parts/base_admin.html' %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f7f5fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  h2 {
+    color: #6b5b95;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #a499d6, #7e6bae);
+    border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(126, 107, 174, 0.3);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #7e6bae, #5e4d8a);
+    box-shadow: 0 6px 16px rgba(94, 77, 138, 0.6);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    background-color: #f2effa;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(151, 139, 188, 0.1);
+  }
+
+  thead {
+    background-color: #7e6bae;
+    color: #ffffff;
+  }
+
+  thead th {
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  tbody tr {
+    background-color: #ede9f8;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  tbody tr:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(126, 107, 174, 0.15);
+    background-color: #e3defc;
+  }
+
+  tbody td {
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #5b4a8a;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: start;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #b8a5f1, #9f88d1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+
+  .username-text {
+    font-weight: 600;
+    color: #4c3e7f;
+    font-size: 1rem;
+  }
+</style>
+
+<div class="header-actions">
+  <h2>📦 Delivery Personnel List</h2>
+  <a href="{% url 'add_delivery' %}" class="btn-primary">➕ Add Delivery Person</a>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in delivery_users %}
+    <tr>
+      <td>
+        <div class="user-info">
+          <div class="avatar">{{ user.username|first|upper }}</div>
+          <span class="username-text">{{ user.username }}</span>
+        </div>
+      </td>
+      <td>{{ user.email }}</td>
+      <td>
+        {% if user.is_active %}
+          ✅
+        {% else %}
+          ❌
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" style="text-align:center; padding: 20px; color: #aaa;">No delivery personnel found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

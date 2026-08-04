@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background: linear-gradient(135deg,  #764ba2, #764ba2);
+    color: #fff;
+    text-align: center;
+    padding-top: 100px;
+    margin: 0;
+}
+h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+p {
+    font-size: 1.2em;
+}
+.logout-btn {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color:rgb(241, 238, 238);
+    border: none;
+    color: block;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.logout-btn:hover {
+    background-color:rgb(239, 228, 229);
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    width: 500px;
+    margin: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}

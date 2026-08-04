@@ -1,0 +1,186 @@
+{% extends 'parts/base_admin.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="py-4">
+        <h2 class="mb-4"><i class="bi bi-graph-up-arrow"></i> Dashboard Analytics</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-soft-blue">
+                    <h6><i class="bi bi-people"></i> Total Buyers</h6>
+                    <h3>{{ total_buyers }}</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-soft-green">
+                    <h6><i class="bi bi-calendar-day"></i> Orders Today</h6>
+                    <h3>{{ total_orders_today }}</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-soft-yellow">
+                    <h6><i class="bi bi-calendar3"></i> Orders This Month</h6>
+                    <h3>{{ total_orders_month }}</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card bg-soft-purple">
+                    <h6><i class="bi bi-check-circle"></i> Stripe Success</h6>
+                    <h3>{{ stripe_success }}</h3>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card dashboard-card bg-soft-pink">
+                    <h6><i class="bi bi-x-circle"></i> Stripe Failure</h6>
+                    <h3>{{ stripe_failure }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <h4><i class="bi bi-box-seam"></i> Most Sold Products</h4>
+        <ul class="list-group mb-4">
+            {% for p in top_products %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ p.product__name }}
+                    <span class="badge bg-primary rounded-pill">{{ p.total_sold }} sold</span>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No data available</li>
+            {% endfor %}
+        </ul>
+
+        <h4 class="mt-5"><i class="bi bi-currency-euro"></i> Revenue Over Time</h4>
+        <canvas id="revenueChart" height="100" class="my-3 bg-white p-3 rounded shadow-sm"></canvas>
+
+        <h4 class="mt-5"><i class="bi bi-person-lines-fill"></i> Gestion des commandes</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-row-hover align-middle">
+                <thead class="table-header-purple text-uppercase">
+                    <tr>
+                        <th>Date</th>
+                        <th>Buyer</th>
+                        <th>Products</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in recent_orders %}
+                    <tr>
+                        <td>{{ order.timestamp|date:"Y-m-d H:i" }}</td>
+                        <td>{{ order.full_name }}<br><small>{{ order.email }}</small></td>
+                        <td>                       
+                            {% for item in order.items.all %}
+                                {{ item.product.name }} (x{{ item.quantity }})<br>
+                            {% empty %}
+                                <em class="text-muted">No product</em>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% if order.payment_status == 'paid' %}
+                                <span class="badge bg-success">Paid</span>
+                            {% elif order.payment_status == 'not_paid' %}
+                                <span class="badge bg-danger">Not Paid</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ order.payment_status }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Inject data -->
+{{ daily_revenue|json_script:"dailyRevenueData" }}
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const data = JSON.parse(document.getElementById('dailyRevenueData').textContent);
+    const revenueData = {
+        labels: data.map(d => d.day),
+        datasets: [{
+            label: 'Daily Revenue (€)',
+            data: data.map(d => d.total),
+            borderColor: 'rgba(100, 100, 255, 0.9)',
+            backgroundColor: 'rgba(100, 100, 255, 0.2)',
+            fill: true,
+            tension: 0.3
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: revenueData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    new Chart(document.getElementById('revenueChart'), config);
+</script>
+
+<!-- Style amélioré -->
+<style>
+    .dashboard-card {
+        padding: 1.5rem;
+        border: none;
+        border-radius: 1.25rem;
+        box-shadow: 0 0.5rem 1rem rgba(165, 81, 190, 0.05);
+        color: #333;
+        transition: transform 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+        transform: scale(1.03);
+    }
+
+    .bg-soft-blue {
+        background-color: #e3f2fd;
+    }
+
+    .bg-soft-green {
+        background-color: #e6f4ea;
+    }
+
+    .bg-soft-yellow {
+        background-color: #fff9db;
+    }
+
+    .bg-soft-purple {
+        background-color: #ede7f6;
+    }
+
+    .bg-soft-pink {
+        background-color: #fce4ec;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .table-header-purple {
+        background-color: #ede7f6 !important;
+        color: #4a148c !important;
+    }
+
+    .table-row-hover tbody tr:hover {
+        background-color: #f3e5f5;
+    }
+
+    .badge {
+        font-size: 0.85rem;
+    }
+</style>
+{% endblock %}

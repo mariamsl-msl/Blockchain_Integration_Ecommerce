@@ -1,0 +1,63 @@
+{% extends 'parts/base_admin.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeIn">
+    <div class="card-body p-5">
+      <h2 class="mb-4 fw-bold" style="color: #6f42c1;">
+        <i class="bi bi-person-plus-fill me-2"></i>
+        Assign Delivery Person for Order #{{ order.id }}
+      </h2>
+
+      <form method="post" class="needs-validation" novalidate id="assignForm">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="delivery_person" class="form-label fw-semibold">Select Delivery Person</label>
+          {{ form.delivery_person|add_class:"form-select" }}
+        </div>
+
+        <button type="submit" class="btn btn-lg shadow-sm mt-3"
+                style="background-color: #6f42c1; color: white; border: none;">
+          <i id="truckIcon" class="bi bi-truck me-1"></i> Assign
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Animate.css CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<!-- 🚚 Truck Animation CSS -->
+<style>
+  @keyframes driveAway {
+    0%   { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(300px); opacity: 0; }
+  }
+
+  .drive-away {
+    animation: driveAway 1s forwards;
+  }
+</style>
+
+<!-- ✅ Form Validation + Truck Animation Script -->
+<script>
+  (() => {
+    'use strict';
+    const form = document.getElementById('assignForm');
+    const truckIcon = document.getElementById('truckIcon');
+
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        truckIcon.classList.add('drive-away');
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })();
+</script>
+{% endblock %}

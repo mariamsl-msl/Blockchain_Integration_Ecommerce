@@ -1,0 +1,40 @@
+{% extends "parts/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}Confirmer votre email{% endblock %}
+
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/product/confirm_email.css' %}">
+
+<!-- Instruction Message -->
+<div class="email-info-message">
+  <strong>If you want to view your orders and confirm the delivery stage, please enter your email below:</strong>
+</div>
+
+<!-- Beautiful Email Form -->
+<div class="email-form-wrapper">
+  <div class="email-form-card">
+    <h2>Confirm Your Email</h2>
+    
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="email">Your Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Confirm Email</button>
+    </form>
+
+    {% if error %}
+      <p class="form-error">{{ error }}</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

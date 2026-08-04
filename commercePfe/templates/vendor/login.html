@@ -1,0 +1,56 @@
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+{% block content %}
+  <nav class="navbar">
+    <span class="navbar-brand">M&C</span>
+    <h2>Admin Login</h2>
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+  </nav>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log in</button>
+</form>
+
+ <script>
+    // Show loading state on login button
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+      const loginButton = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function () {
+        loginButton.disabled = true;
+        loginButton.textContent = 'Logging in...';
+      });
+
+      // Dark Mode toggle
+      const toggle = document.getElementById('darkModeToggle');
+      const body = document.body;
+
+      function updateToggleText() {
+        if (body.classList.contains('dark-mode')) {
+          toggle.textContent = '☀️ Light Mode';
+        } else {
+          toggle.textContent = '🌙 Dark Mode';
+        }
+      }
+
+      // Check saved preference
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+      }
+
+      updateToggleText();
+
+      toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        updateToggleText();
+      });
+    });
+  </script>
+
+{% endblock %}

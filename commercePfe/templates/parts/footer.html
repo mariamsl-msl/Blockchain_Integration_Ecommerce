@@ -1,0 +1,42 @@
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/parts/footer.css' %}">
+
+<footer class="bg-light text-center text-lg-start mt-5 border-top">
+  <div class="container p-4">
+    <div class="row">
+
+      <!-- About -->
+      <div class="col-lg-6 col-md-12 mb-4">
+        <h5 class="text-uppercase">M&C E-commerce</h5>
+        <p>
+          Merci de faire vos achats chez nous. Nous vous garantissons une livraison rapide, un paiement sécurisé et un service client de qualité.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="text-uppercase">Liens utiles</h5>
+        <ul class="list-unstyled mb-0">
+          <li><a href="{% url 'home' %}" class="text-dark text-decoration-none">Accueil</a></li>
+          <li><a href="{% url 'product_list' %}" class="text-dark text-decoration-none">Produits</a></li>
+          <li><a href="#" class="text-dark text-decoration-none">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 class="text-uppercase">Suivez-nous</h5>
+        <a href="#" class="me-3 text-dark"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="me-3 text-dark"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-dark"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="text-center p-3 bg-secondary text-white">
+    © 2025 M&C | Tous droits réservés.
+  </div>
+</footer>

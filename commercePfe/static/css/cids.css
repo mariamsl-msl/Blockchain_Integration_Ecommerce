@@ -1,0 +1,45 @@
+.hero {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #343a40;
+}
+
+.cid-list {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cid-list li {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cid-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cid-list a {
+    color: #0d6efd;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.cid-list a:hover {
+    text-decoration: underline;
+    color: #084298;
+}

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessories - Ashion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+
+</head>
+
+<body data-aos="fade-up">
+
+  {% include 'parts/navbar.html' %}
+
+  {% block content %}
+
+  
+  <!-- ✅ HERO SECTION -->
+  <section class="hero">
+    <h1>Accessories</h1>
+    <p>Discover the perfect accessories to complement your style and add a finishing touch to your look.</p>
+  </section>
+
+  <!-- ✅ PRODUCTS SECTION -->
+  <section class="products">
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/accessory1.png' %}" alt="Product 1">
+      <h5>Elegant Necklace</h5>
+      <p>A sparkling necklace to elevate your evening look.</p>
+      <a href="#">Shop Now</a>
+    </div>
+    <div class="product-card" data-aos="zoom-in" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/accessory2.png' %}" alt="Product 2">
+      <h5>Stylish Watch</h5>
+      <p>Classic design with modern features, perfect for every occasion.</p>
+      <a href="#">Shop Now</a>
+    </div>
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/accessory3.png' %}" alt="Product 3">
+      <h5>Leather Belt</h5>
+      <p>High-quality leather belt, versatile and durable.</p>
+      <a href="#">Shop Now</a>
+    </div>
+    <div class="product-card" data-aos="zoom-in" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/accessory4.png' %}" alt="Product 4">
+      <h5>Chic Sunglasses</h5>
+      <p>Trendy sunglasses for a stylish and cool look.</p>
+      <a href="#">Shop Now</a>
+    </div>
+    <!-- Added Product 5 -->
+    <div class="product-card" data-aos="fade-up" data-aos-duration="1000">
+      <img src="{% static 'truffleapp/src/images/accessory55.png' %}" alt="Product 5">
+      <h5>Fashionable Scarf</h5>
+      <p>Soft and luxurious scarf to keep you warm and stylish.</p>
+      <a href="#">Shop Now</a>
+    </div>
+    <!-- Added Product 6 -->
+    <div class="product-card" data-aos="zoom-in" data-aos-duration="1000">
+        <img src="{% static 'truffleapp/src/images/a.jpg' %}" alt="Product 6">
+        <h5>Ring</h5>
+        <p>Elegant ring made from premium materials for a sophisticated look.</p>
+        <a href="#">Shop Now</a>
+      </div>
+      
+      
+      
+  </section>
+  {% endblock content %}
+
+  <!-- ✅ SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Initialisation de l'animation AOS (Animation On Scroll)
+    AOS.init();
+
+    // Favorite Icon Toggle
+    document.getElementById("heart-icon").addEventListener("click", function () {
+      this.classList.toggle("liked");
+    });
+
+    // Toggle Search Box
+    document.getElementById("search-icon").addEventListener("click", function () {
+      let searchBox = document.querySelector(".search-box");
+      searchBox.style.display = searchBox.style.display === "block" ? "none" : "block";
+    });
+  </script>
+</body>
+
+</html>

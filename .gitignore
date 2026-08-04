@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+venv/
+
+# Django secrets
+secret.key
+
+# Truffle
+new-truffle-project/node_modules/
+new-truffle-project/build/
+
+# Node
+node_modules/
+
+# VS Code
+.vscode/

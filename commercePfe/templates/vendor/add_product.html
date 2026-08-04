@@ -1,0 +1,116 @@
+{% extends 'parts/base_admin.html' %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f9f7fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .form-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    margin: 40px auto;
+    border-radius: 16px;
+    max-width: 600px;
+    border-left: 6px solid #7e6bae;
+
+   
+    box-shadow: 0 0 20px rgba(126, 107, 174, 0.15), 
+                0 8px 40px rgba(126, 107, 174, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .form-container:hover {
+    box-shadow: 0 0 30px rgba(126, 107, 174, 0.2), 
+                0 12px 48px rgba(126, 107, 174, 0.12);
+  }
+
+  h1::before {
+    content: "🛍️ ";
+    font-size: 1.8rem;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  
+
+  form p {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #5b4a8a;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background-color: #f8f6ff;
+    transition: border-color 0.3s, box-shadow 0.3s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #7e6bae;
+    box-shadow: 0 0 10px rgba(151, 139, 180, 0.2);
+    outline: none;
+  }
+
+  button[type="submit"] {
+    display: block;
+    margin: 25px auto 0;
+    background: linear-gradient(135deg, #a499d6, #7e6bae);
+    color: #fff;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(126, 107, 174, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background: linear-gradient(135deg, #7e6bae, #5e4d8a);
+    box-shadow: 0 6px 20px rgba(94, 77, 138, 0.35);
+  }
+
+  .back-link {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    color: #7e6bae;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+    color:rgb(169, 154, 207);
+  }
+</style>
+
+<div class="form-container">
+  <h1> Add New Product</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Product</button>
+  </form>
+
+  <a href="{% url 'product_panel' %}" class="back-link">← Back to Product Control Panel</a>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer .bg-secondary {
+    background-color: #343a40 !important;
+}

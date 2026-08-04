@@ -1,0 +1,165 @@
+    
+    body {
+      background-color: #fffdf8;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero-heading {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-heading h1 {
+      font-size: 3rem;
+      font-weight: 400;
+    }
+    .hero-heading em {
+      font-style: italic;
+      color: rgb(174, 99, 190);
+    }
+
+    /* 👗 Masonry Section Styling */
+    .collection-highlight {
+      background: #f9f5f1;
+      padding: 4rem 1rem;
+    }
+    .collection-highlight h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+
+    
+    .masonry-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 1rem;
+    }
+
+    .py-5 {
+      background-color: #f8f9fa;
+    }
+    .masonry-box {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    .masonry-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .masonry-box:hover img {
+      transform: scale(1.05);
+    }
+    .masonry-box.tall {
+      grid-row: span 2;
+    }
+    .masonry-box.wide {
+      grid-column: span 2;
+      grid-row: span 2; 
+    }
+
+    @media (max-width: 768px) {
+      .masonry-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-auto-rows: 180px;
+      }
+    }
+
+      .hero-heading h1 {
+    animation: floatIn 2s ease-in-out forwards;
+  }
+
+  @keyframes floatIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Add gentle fade scale on masonry cards */
+  .masonry-box {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeScale 1s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeScale {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .masonry-box:nth-child(1) { animation-delay: 0.1s; }
+  .masonry-box:nth-child(2) { animation-delay: 0.3s; }
+  .masonry-box:nth-child(3) { animation-delay: 0.5s; }
+  .masonry-box:nth-child(4) { animation-delay: 0.7s; }
+  .masonry-box:nth-child(5) { animation-delay: 0.9s; }
+
+  /* Floating arrow down */
+  .fa-arrow-down {
+    animation: bounce 2s infinite;
+    color: rgb(174, 99, 190);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  .collection-highlight {
+    background: linear-gradient(135deg, #f9f5f1 0%, #fff 100%);
+    transition: background 1s ease-in-out;
+  }
+  .masonry-box {
+  position: relative;
+}
+.masonry-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.masonry-box:hover::after {
+  opacity: 1;
+}
+
+body.dark-mode {
+  background-color: #181818;
+  color: #f0f0f0;
+}
+
+body.dark-mode .hero-heading h1 {
+  color: #f0f0f0;
+}
+
+body.dark-mode p {
+  color: #f0f0f0;
+}
+
+body.dark-mode .collection-highlight {
+  background: #242424;
+}
+
+body.dark-mode .masonry-gallery {
+  background: #242424;
+}
+
+body.dark-mode .masonry-box {
+  background: #333;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+
+body.dark-mode p {
+  color: #f0f0f0;
+}
